@@ -7,7 +7,8 @@ import os
 
 class TranslateService:
 
-    def translate(self, from_language, to,  value_to_translate):
+    @staticmethod
+    def translate(from_language, to,  value_to_translate):
 
         url = os.environ.get('ENDPOINT')
         url = url.replace('{from}', from_language)
@@ -35,3 +36,4 @@ class TranslateService:
             "original_text": value_to_translate,
             "value_translated": result_element.text
         }
+

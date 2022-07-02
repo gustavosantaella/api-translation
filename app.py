@@ -15,7 +15,7 @@ def getTranslation():
     value_to_translate = request.args.get('value_to_translate')
 
     if value_to_translate and to and from_language:
-        values = TranslateService().translate(from_language, to, value_to_translate)
+        values = TranslateService.translate(from_language, to, value_to_translate)
         return flask.jsonify(values)
 
     return flask.jsonify('You should send three query params', {"value_to_translate": 'string', "to": 'string', "from_language": 'string' })
