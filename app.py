@@ -17,7 +17,7 @@ def getTranslation():
         values = TranslateService.translate(from_language, to, value_to_translate)
         return flask.jsonify(values)
 
-    return flask.jsonify('You should send three query params', {"translate": 'string', "to": 'string', "from": 'string' })
+    return flask.jsonify('You should to send three query params', {"text": 'string', "to": 'string', "from": 'string' }, {"Example":"https://api-translation.onrender.com?from=es&to=en&text=hola"})
 
 
 if __name__ == "__main__":
