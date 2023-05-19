@@ -13,9 +13,9 @@ class TranslateService:
         url = os.environ.get('ENDPOINT')
         url = url.replace('{from}', from_language)
         url = url.replace('{to}', to)
-
-        chromium_path = "./driver/chromedriver"
-        service = Service(chromium_path)
+        url = url.replace('{text}', value_to_translate)
+     
+        service = Service(executable_path='/usr/local/bin/chromedriver')
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--headless')
@@ -23,17 +23,18 @@ class TranslateService:
         browser = webdriver.Chrome(service=service, options=chrome_options)
 
         browser.get(url)
-        element = browser.find_element(by='xpath',
-                                       value='//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[1]/span/span/div/textarea')
-        element.send_keys(value_to_translate)
+        # element = browser.find_element(by='xpath',
+        #                                value='//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[1]/span/span/div/textarea')
+        # element.send_keys(value_to_translate)
         time.sleep(2)
         result_element = browser.find_element(by='xpath',
-                                              value='//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[2]/div[7]/div/div[1]/span[1]')
+                                              value='//*[@id="yDmH0d"]/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[2]/div/div[9]/div/div[1]')
 
+        print(url)
         return {
-            "from_language": from_language,
+            "from": from_language,
             "to": to,
-            "original_text": value_to_translate,
-            "value_translated": result_element.text
+            "text": value_to_translate,
+            "result": result_element.text
         }
 
