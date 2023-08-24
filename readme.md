@@ -4,7 +4,7 @@
 You can use this API to transalate text.
 ## Demo
 
-You can test the api here [Test api here](https://ms-countries.onrender.com/)
+You can test the api here [Test api here](https://api-translation.onrender.com)
 ## API Reference
 
 #### Get translation
